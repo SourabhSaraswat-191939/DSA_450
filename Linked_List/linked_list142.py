@@ -37,6 +37,26 @@ class Solution:
             check = newHead
             return check
         return arr[0]
+
+
+        # # Solution 2 (Recursive) => Space (O(1)) and time (O(n))    
+        # # can have recursive depth limit issue.
+        # def addRecursive(head):
+        #     if head==None:
+        #         return 1
+                
+        #     result = head.data + addRecursive(head.next)
+        #     head.data = int(result%10)
+            
+        #     return int(result/10)
+        
+        # carry = addRecursive(head)
+        # if carry!=0:
+        #     newHead = Node(carry)
+        #     newHead.next = head
+        #     head = newHead
+        
+        # return head
             
             
         #{ 
