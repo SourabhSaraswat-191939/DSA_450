@@ -29,15 +29,10 @@ class Solution:
             if count==0:
                 if startBool:
                     startF=head
-                    print("sf",startF.data)
-        
                 else:
                     startS=head
-                    print("ss",startS.data)
                 prev=None
                 startBool= not startBool
-                print("arrived",startBool)
-
                     
             nex = head.next
             head.next = prev
