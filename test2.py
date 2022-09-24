@@ -1,46 +1,60 @@
-# cook your dish here
-t = int(input())
-for _ in range(t):
-    a,b,x,y = map(int,input().split())
-    board = []
-    for i in range(8):
-        row = []
-        for j in range(8):
-            row.append(0)
-            
-        board.append(row)
-    moves = [[2,1],[2,-1],[-2,1],[-2,-1],[1,2],[-1,2],[1,-2],[-1,-2]]
-    dp = {}
-    visited = set()
-    def dfs(src,visited,count):
-        # print(count,visited)
-        print(src)
-        if src[0]<1 or src[1]<1 or src[0]>8 or src[1]>8:
-            return False
-        if src==(x,y):
-            print(count)
-            if (count%2==0) and count<100:
-                return True
-            else:
-                return False
-        if src in visited:
-            return False
-        visited.add(src)
-        if src in dp:
-            return False
+class TrieNode:	
+	def __init__(self):
+		self.children = dict()
+		self.isEndOfWord = False
+		self.num = dict()
+
+# root = None
+
+def getNewTrieNode():
+	
+	pNode = TrieNode()
+	return pNode
+
+def insertWord(root,word):	
+    # global root
+    current = root
+    s = ''
+    for i in range(len(word)):
+        s = word[i]
+        if (s not in current.children):
+            p = getNewTrieNode()
+            current.children[s] = p
+            current.num[s] = 1
+        else:
+            current.num[s] = current.num[s] + 1
+        current = current.children[s]
+
+    current.isEndOfWord = True
+
+def countWords(root, prefix):			
+	current = root
+	s = ''
+	wordCount = 0
+	print(current,"check2")
+	for i in range(len(prefix)):
+		s = prefix[i]
+		if (s not in current.children):
+			wordCount = 0
+			break
+		wordCount += (current.num)[s]
+		current = (current.children)[s]
+
+	return wordCount
+
+def sumPrefixScores(words):
+    # global root
+    root = None
+    root = getNewTrieNode()
+    print(root,"check")
+    for word in words:
+        insertWord(root,word)
+    ans = []
+    for word in words:
+        ans.append(countWords(root, word))
         
-        for mx,my in moves:
-            print((src[0],src[1]),"-->",end="")
-            result = dfs((src[0]+mx,src[1]+my),visited,count+1)
-            if result:
-                return True
-        # visited.add(src)    
-        return False
-            
-    
-    if dfs((a,b),visited,0):
-        print("YES")
-    else:
-        print(visited)
-        print("NO")
-        
+    return ans
+
+
+words = [ "abc","ab","bc","b"]
+print(sumPrefixScores(words))

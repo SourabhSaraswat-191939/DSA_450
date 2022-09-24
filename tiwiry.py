@@ -1,20 +1,8 @@
-import requests
-# GITHUB_TOKEN= 
-
-github_username = "Abkt2001"
-URL = "https://api.github.com/orgs/OT-TRAINING/repos"
-
-# for any username
-# URL = "https://api.github.com/users/"+github_username+"/repos"
-
-# with query like page size etc
-# URL = f"https://api.github.com/orgs/OT-TRAINING/repos?order=desc&page=1&per_page=3"
-
-response = requests.get(url = URL)
-
-# to print the complete response 
-# print(response.json())
-
-# like if you want to print name of first repo in response.
-print(response.json()[0]["name"])
-
+print("python program by relevel")
+ls.append(2)
+ls.append(3)
+ls = []
+ls.append(4)
+ls.append(5)
+ls.append(6)
+print("program ends here")
